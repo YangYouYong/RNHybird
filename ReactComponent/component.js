@@ -42,7 +42,7 @@ export default class hunheDemo extends Component {
   //获取Promise对象处理
   async _updateEvents(){
     try{
-        var events=await RNBridgeModule.RNInvokeOCPromise({'name':'jiangqqlmj'});
+        var events=await RNBridgeModule.RNInvokeOCPromise({'name':'cpbeern'});
         this.setState({events});
     }catch(e){
         this.setState({events:e.message});
@@ -50,8 +50,6 @@ export default class hunheDemo extends Component {
   }
     asyncCallBackMessage(messageId,content){
         try{
-            //var events=await RNBridgeModule.RNInvokeOCPromise({'name':'hahahahaha'});
-            //this.setState({events});
             RNBridgeModule.RNSendMessage(
                 {'messageId':messageId,
                     'messageType':'CALL_BACK',
@@ -102,7 +100,7 @@ export default class hunheDemo extends Component {
         <Text style={{margin:5}}>'返回数据为:'+{this.state.events}</Text>
         <CustomButton text='RN调用iOS原生方法_CallBack回调'
           onPress={()=>{RNBridgeModule.RNInvokeOCCallBack(
-            {'name':'jiangqq','description':'http://www.lcode.org'},
+            {'name':'cpbee','description':'http://www.cpbee.com'},
             (error,events)=>{
                 if(error){
                   console.error(error);
@@ -118,7 +116,7 @@ export default class hunheDemo extends Component {
           '返回数据为:'+{this.state.msg}
         </Text>
         <CustomButton text='iOS调用访问React Native'
-            onPress={()=>RNBridgeModule.VCOpenRN({'name':'jiangqqlmj'})}
+            onPress={()=>RNBridgeModule.VCOpenRN({'name':'cpbeern'})}
         />
            
       </View>
@@ -140,5 +138,3 @@ const styles = StyleSheet.create({
     borderColor: '#facece',
   },
 });
-
-// AppRegistry.registerComponent('hunheDemo', () => hunheDemo);
