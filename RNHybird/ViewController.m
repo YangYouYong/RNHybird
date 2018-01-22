@@ -10,7 +10,8 @@
 
 #import <RCTRootView.h>
 #import <RCTBridgeModule.h>
-#import "RNMessageClient.h"
+#import "RNMessageDispatcher.h"
+#import "UIViewController+RNBridgeClient.h"
 
 @interface ViewController ()<RNMessageClient>
 
@@ -32,7 +33,7 @@
     [self.view addSubview:rootView];
     
     [[RNMessageDispatcher sharedInstance] setReactNativeInstance:rootView];
-    [[RNMessageDispatcher sharedInstance] addDelegate:self];
+    [[RNMessageDispatcher sharedInstance] addNativeBridgeModule:self];
     [super viewDidLoad];
     
     self.nativeMessageSend = [UIButton new];

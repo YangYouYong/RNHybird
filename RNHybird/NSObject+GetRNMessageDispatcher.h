@@ -7,10 +7,10 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "RNMessageClient.h"
+#import "RNMessageDispatcher.h"
 
 @interface NSObject (GetRNMessageDispatcher)
 
--(RNMessageDispatcher *)getAppRNMessageDispatcher;
++(RNMessageDispatcher *)getAppRNMessageDispatcher;
 
 @end

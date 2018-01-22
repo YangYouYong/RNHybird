@@ -9,9 +9,9 @@
 /* Begin PBXBuildFile section */
 		B736ACED7E2A8E128F1E70F7 /* libPods-RNHybirdUITests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = EA403C5AE3534BC909C8C109 /* libPods-RNHybirdUITests.a */; };
 		C00A1BC42011C90F0024DEBA /* RNBridgeModuleClient.m in Sources */ = {isa = PBXBuildFile; fileRef = C00A1BC32011C90F0024DEBA /* RNBridgeModuleClient.m */; };
-		C00A1BC72011CB440024DEBA /* RNMessageClient.m in Sources */ = {isa = PBXBuildFile; fileRef = C00A1BC62011CB440024DEBA /* RNMessageClient.m */; };
-		C00A1BCD2011D0DD0024DEBA /* UIApplication+GetRNMessageDispatcher.m in Sources */ = {isa = PBXBuildFile; fileRef = C00A1BCC2011D0DD0024DEBA /* UIApplication+GetRNMessageDispatcher.m */; };
+		C00A1BC72011CB440024DEBA /* RNMessageDispatcher.m in Sources */ = {isa = PBXBuildFile; fileRef = C00A1BC62011CB440024DEBA /* RNMessageDispatcher.m */; };
 		C00A1BD02011D14D0024DEBA /* NSObject+GetRNMessageDispatcher.m in Sources */ = {isa = PBXBuildFile; fileRef = C00A1BCF2011D14D0024DEBA /* NSObject+GetRNMessageDispatcher.m */; };
+		C00A1BE12015AE2B0024DEBA /* UIViewController+RNBridgeClient.m in Sources */ = {isa = PBXBuildFile; fileRef = C00A1BE02015AE2B0024DEBA /* UIViewController+RNBridgeClient.m */; };
 		C0489D3C20118CE100794DF8 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = C0489D3B20118CE100794DF8 /* AppDelegate.m */; };
 		C0489D3F20118CE100794DF8 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C0489D3E20118CE100794DF8 /* ViewController.m */; };
 		C0489D4220118CE100794DF8 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C0489D4020118CE100794DF8 /* Main.storyboard */; };
@@ -52,12 +52,12 @@
 		B2BF617F16486335E9139C7A /* Pods-RNHybird.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RNHybird.release.xcconfig"; path = "Pods/Target Support Files/Pods-RNHybird/Pods-RNHybird.release.xcconfig"; sourceTree = "<group>"; };
 		C00A1BC22011C90F0024DEBA /* RNBridgeModuleClient.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RNBridgeModuleClient.h; sourceTree = "<group>"; };
 		C00A1BC32011C90F0024DEBA /* RNBridgeModuleClient.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RNBridgeModuleClient.m; sourceTree = "<group>"; };
-		C00A1BC52011CB440024DEBA /* RNMessageClient.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RNMessageClient.h; sourceTree = "<group>"; };
-		C00A1BC62011CB440024DEBA /* RNMessageClient.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RNMessageClient.m; sourceTree = "<group>"; };
-		C00A1BCB2011D0DD0024DEBA /* UIApplication+GetRNMessageDispatcher.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIApplication+GetRNMessageDispatcher.h"; sourceTree = "<group>"; };
-		C00A1BCC2011D0DD0024DEBA /* UIApplication+GetRNMessageDispatcher.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIApplication+GetRNMessageDispatcher.m"; sourceTree = "<group>"; };
+		C00A1BC52011CB440024DEBA /* RNMessageDispatcher.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RNMessageDispatcher.h; sourceTree = "<group>"; };
+		C00A1BC62011CB440024DEBA /* RNMessageDispatcher.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RNMessageDispatcher.m; sourceTree = "<group>"; };
 		C00A1BCE2011D14D0024DEBA /* NSObject+GetRNMessageDispatcher.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSObject+GetRNMessageDispatcher.h"; sourceTree = "<group>"; };
 		C00A1BCF2011D14D0024DEBA /* NSObject+GetRNMessageDispatcher.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSObject+GetRNMessageDispatcher.m"; sourceTree = "<group>"; };
+		C00A1BDF2015AE2B0024DEBA /* UIViewController+RNBridgeClient.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIViewController+RNBridgeClient.h"; sourceTree = "<group>"; };
+		C00A1BE02015AE2B0024DEBA /* UIViewController+RNBridgeClient.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+RNBridgeClient.m"; sourceTree = "<group>"; };
 		C0489D3720118CE100794DF8 /* RNHybird.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RNHybird.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C0489D3A20118CE100794DF8 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		C0489D3B20118CE100794DF8 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -149,12 +149,12 @@
 			children = (
 				C0489D3A20118CE100794DF8 /* AppDelegate.h */,
 				C0489D3B20118CE100794DF8 /* AppDelegate.m */,
-				C00A1BC52011CB440024DEBA /* RNMessageClient.h */,
-				C00A1BC62011CB440024DEBA /* RNMessageClient.m */,
+				C00A1BC52011CB440024DEBA /* RNMessageDispatcher.h */,
+				C00A1BC62011CB440024DEBA /* RNMessageDispatcher.m */,
 				C0489D3D20118CE100794DF8 /* ViewController.h */,
 				C0489D3E20118CE100794DF8 /* ViewController.m */,
-				C00A1BCB2011D0DD0024DEBA /* UIApplication+GetRNMessageDispatcher.h */,
-				C00A1BCC2011D0DD0024DEBA /* UIApplication+GetRNMessageDispatcher.m */,
+				C00A1BDF2015AE2B0024DEBA /* UIViewController+RNBridgeClient.h */,
+				C00A1BE02015AE2B0024DEBA /* UIViewController+RNBridgeClient.m */,
 				C00A1BCE2011D14D0024DEBA /* NSObject+GetRNMessageDispatcher.h */,
 				C00A1BCF2011D14D0024DEBA /* NSObject+GetRNMessageDispatcher.m */,
 				C00A1BC22011C90F0024DEBA /* RNBridgeModuleClient.h */,
@@ -501,12 +501,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C00A1BE12015AE2B0024DEBA /* UIViewController+RNBridgeClient.m in Sources */,
 				C0489D3F20118CE100794DF8 /* ViewController.m in Sources */,
 				C0489D4A20118CE100794DF8 /* main.m in Sources */,
-				C00A1BC72011CB440024DEBA /* RNMessageClient.m in Sources */,
+				C00A1BC72011CB440024DEBA /* RNMessageDispatcher.m in Sources */,
 				C0489D3C20118CE100794DF8 /* AppDelegate.m in Sources */,
 				C00A1BD02011D14D0024DEBA /* NSObject+GetRNMessageDispatcher.m in Sources */,
-				C00A1BCD2011D0DD0024DEBA /* UIApplication+GetRNMessageDispatcher.m in Sources */,
 				C00A1BC42011C90F0024DEBA /* RNBridgeModuleClient.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

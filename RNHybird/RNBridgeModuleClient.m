@@ -10,7 +10,6 @@
 
 #import <React/RCTBridge.h>
 #import <React/RCTEventDispatcher.h>
-#import "UIApplication+GetRNMessageDispatcher.h"
 #import "NSObject+GetRNMessageDispatcher.h"
 
 @implementation RNBridgeModuleClient
@@ -25,7 +24,7 @@ RCT_EXPORT_METHOD(RNInvokeOCCallBack:(NSDictionary *)dictionary callback:(RCTRes
     NSLog(@"接收到RN传过来的数据为:%@",dictionary);
     NSArray *events = @[@"la",@"34"];
     dispatch_async(dispatch_get_main_queue(), ^{
-        [[[UIApplication sharedApplication] getAppRNMessageDispatcher] didReceiveReactNativeMessage:dictionary];
+        [[NSObject getAppRNMessageDispatcher] didReceiveReactNativeMessage:dictionary];
         
         callback(@[[NSNull null], events]);
     });
@@ -61,7 +60,7 @@ RCT_EXPORT_METHOD(VCOpenRN:(NSDictionary *)dictionary){
 
 RCT_EXPORT_METHOD(RNSendMessage:(NSDictionary *)dictionary){
     dispatch_async(dispatch_get_main_queue(), ^{
-        [[[UIApplication sharedApplication] getAppRNMessageDispatcher] didReceiveReactNativeMessage:dictionary];
+        [[NSObject getAppRNMessageDispatcher] didReceiveReactNativeMessage:dictionary];
     });
 }
 

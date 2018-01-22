@@ -10,7 +10,7 @@
 
 @implementation NSObject (GetRNMessageDispatcher)
 
--(RNMessageDispatcher *)getAppRNMessageDispatcher {
++(RNMessageDispatcher *)getAppRNMessageDispatcher {
     return [RNMessageDispatcher sharedInstance];
 }
 

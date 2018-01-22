@@ -6,16 +6,16 @@
 //  Copyright © 2018年 cpbee. All rights reserved.
 //
 
-#import "RNMessageClient.h"
+#import "RNMessageDispatcher.h"
 #import <React/RCTBridge.h>
 #import <React/RCTEventDispatcher.h>
 
 @interface RNMessageDispatcher()
 
-@property (nonatomic, weak) RCTRootView *reactNativeClient;   // 消息的入口
-
+@property (nonatomic, weak) RCTRootView *reactNativeInstance;   // 消息的入口
 @property (nonatomic, strong) NSHashTable *clients;
 @property (nonatomic, strong) NSMutableDictionary *callBackClientMap;
+
 @end
 
 @implementation RNMessageDispatcher
@@ -31,12 +31,30 @@
     return instance;
 }
 
+-(void)registerReactNativeBridgeModule {
+    if (self.reactNativeInstance) {
+        [self.reactNativeInstance.bridge.eventDispatcher sendAppEventWithName:@"UpdateNativeModule"
+                                                                         body:@{@"moduleList":[self moduleList],@"errorCode":@"0",@"msg":@"成功"}];
+    }
+}
+
+-(void)addNativeBridgeModule:(id<RNMessageClient>)module {
+    [self.clients addObject:module];
+    [self registerReactNativeBridgeModule];
+}
+
+-(void)removeNativeBridgeModule:(id<RNMessageClient>)module {
+    
+    [self.clients removeObject:module];
+    [self registerReactNativeBridgeModule];
+}
+
 -(void)setReactNativeInstance:(RCTRootView *)instanceView {
-    if (self.reactNativeClient != nil) {
+    if (self.reactNativeInstance != nil) {
         NSParameterAssert("Should just register one instance listen native messages");
         return ;
     }
-    self.reactNativeClient = instanceView;
+    _reactNativeInstance = instanceView;
 }
 
 -(void)addDelegate:(id<RNMessageClient>)delegate {
@@ -62,7 +80,7 @@
 }
 
 -(RCTRootView *)getCurrentReactNativeInstance {
-    return self.reactNativeClient;
+    return self.reactNativeInstance;
 }
 
 -(void)sendMessageToReactNative:(NSDictionary *)message
@@ -72,7 +90,18 @@
     // mark message and register call back id
     NSString *callBackMethodName = NSStringFromSelector(callBackMethod);
     self.callBackClientMap[messageCallBackId] = @{@"client":callBackClient,@"function":callBackMethodName};
-    [self.reactNativeClient.bridge.eventDispatcher sendAppEventWithName:@"EventReminder" body:@{@"name":message,@"errorCode":@"0",@"msg":@"成功"}];
+    [self.reactNativeInstance.bridge.eventDispatcher sendAppEventWithName:@"EventReminder" body:@{@"name":message,@"errorCode":@"0",@"msg":@"成功"}];
+}
+
+-(NSArray *)moduleList {
+    __block NSMutableArray *arr = @[].mutableCopy;
+    [[[self.clients objectEnumerator] allObjects] enumerateObjectsUsingBlock:^(id<RNMessageClient>  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        NSMutableDictionary *moduleIdentifier = @{}.mutableCopy;
+        moduleIdentifier[@"moduleName"] = [obj bridgeModuleName];
+        moduleIdentifier[@"moduleId"] = [obj bridgeModuleId];
+        [arr addObject:moduleIdentifier];
+    }];
+    return arr;
 }
 
 @end

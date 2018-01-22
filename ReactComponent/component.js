@@ -15,7 +15,9 @@ var { NativeModules } = require('react-native');
 var RNBridgeModule=NativeModules.RNBridgeModuleClient;
 import { NativeAppEventEmitter } from 'react-native';
 var subscription; //订阅者
+import NativeMessageClient from './NativeMessageClient'
 
+//TODO: change project to flux or redux
 class CustomButton extends Component {
   render() {
     return (
@@ -28,7 +30,7 @@ class CustomButton extends Component {
     );
   }
 }
-export default class hunheDemo extends Component {
+export default class RNHybird extends Component {
   constructor(props){
     super(props);
     this.state={
@@ -118,7 +120,10 @@ export default class hunheDemo extends Component {
         <CustomButton text='iOS调用访问React Native'
             onPress={()=>RNBridgeModule.VCOpenRN({'name':'cpbeern'})}
         />
-           
+
+  <NativeMessageClient>
+      </NativeMessageClient>
+
       </View>
     );
   }

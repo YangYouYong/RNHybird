@@ -9,3 +9,7 @@
 	react-native start
 
 2.  选择工程 run
+
+目前互通思路:
+
+![graff](./hybird_graff.png)
